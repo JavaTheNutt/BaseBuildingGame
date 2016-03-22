@@ -8,20 +8,17 @@ public enum TileType { Empty, Floor };
 */
 public class Tile
 {
-    
+
     TileType _type = TileType.Empty;
 
     private Action<Tile> CbTileTypeChanged; //actions are technically an array of methods, so multiple methods can be added here to be executed sequentially 
 
-    public TileType Type
-    {
+    public TileType Type {
         get { return _type; }
-        set
-        {
+        set {
             TileType oldType = _type;
             _type = value;
-            if (CbTileTypeChanged != null && _type != oldType)
-            {
+            if (CbTileTypeChanged != null && _type != oldType) {
                 CbTileTypeChanged(this);
             }
         }
@@ -31,10 +28,10 @@ public class Tile
     InstalledObject installedObject;
 
     World world;
-    
+
 
     public int X { get; protected set; }
-    
+
 
     public int Y { get; protected set; }
 
@@ -44,12 +41,12 @@ public class Tile
         this.X = x;
         this.Y = y;
     }
-/*This  will add the specified action to the function passed*/
+    /*This  will add the specified action to the function passed*/
     public void RegisterTileTypeChangedCallback(Action<Tile> callback)
     {
         CbTileTypeChanged += callback;
     }
-/*This will remove a function from the list of callbacks, may throw an errror if specifed action does not exist*/
+    /*This will remove a function from the list of callbacks, may throw an errror if specifed action does not exist*/
     public void UnregisterTileTypeChangedCallback(Action<Tile> callback)
     {
         CbTileTypeChanged -= callback;
@@ -58,14 +55,12 @@ public class Tile
     public bool PlaceObject(InstalledObject objInstance)
     {
         /*This will uninstall an installed object if null is passed*/
-        if (objInstance == null)
-        {
+        if (objInstance == null) {
             installedObject = null;
             return true;
         }
 
-        if (installedObject != null)
-        {
+        if (installedObject != null) {
             Debug.LogError("You are trying to add an object to a tile that already has an object installed");
             return false;
         }

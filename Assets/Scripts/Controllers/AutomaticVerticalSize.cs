@@ -9,18 +9,18 @@ public class AutomaticVerticalSize : MonoBehaviour
 
     private float childSpacingHeight;
 
-	// Use this for initialization
-	void Start ()
-	{
+    // Use this for initialization
+    void Start()
+    {
         AdjustSize();
     }
-	
+
 
     public void AdjustSize()
     {
         childSpacingHeight = this.GetComponent<VerticalLayoutGroup>().spacing + childHeight;
         Vector2 size = this.GetComponent<RectTransform>().sizeDelta;
-        size.y = this.transform.childCount*childSpacingHeight;
+        size.y = this.transform.childCount * childSpacingHeight;
         this.GetComponent<RectTransform>().sizeDelta = size;
     }
 }
